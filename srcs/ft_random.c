@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_algo.c                                          :+:      :+:    :+:   */
+/*   ft_random.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 08:28:16 by tmanuel           #+#    #+#             */
-/*   Updated: 2018/03/24 19:55:58 by tmanuel          ###   ########.fr       */
+/*   Created: 2018/03/24 17:33:32 by tmanuel           #+#    #+#             */
+/*   Updated: 2018/03/26 11:36:24 by tmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 static t_filler	*ft_check_valid2(t_filler *f, int x, int y)
 {
 	int	score;
-
 	if (f->pstar == f->pstarmax && f->needone == 1)
 	{
-		score = ft_calculate_score(f, x, y);
+		FILE *fp = fopen("toto.txt", "a+");
+		score = ft_start_score(f, x, y);
+		fprintf(fp, "%d %d\n", score, f->score);
 		if (score >= f->score)
 		{
 			f->validx = x;
 			f->validy = y;
 			f->score = score;
 		}
+		fclose(fp);
 	}
 	return (f);
 }
@@ -79,16 +81,16 @@ static int		ft_calculate_star(char **piece)
 	return (star);
 }
 
-t_filler		*ft_start_algo(t_filler *f)
+t_filler		*ft_start1(t_filler *f)
 {
 	int		x;
 	int		y;
 
-	f->score = 0;
 	f->validy = -150;
 	f->validx = -150;
 	y = f->mapy - 1;
 	f = ft_cut_piece(f);
+	f->score = 0;
 	f->pstarmax = ft_calculate_star(f->piece);
 	while (y >= 0)
 	{
@@ -100,7 +102,7 @@ t_filler		*ft_start_algo(t_filler *f)
 		}
 		y--;
 	}
-	if (f->validy != -150)
+	if (f->validx != -150)
 		ft_printf("%d %d\n", f->validy - (f->piecey - f->pay),
 				f->validx - f->pax);
 	else

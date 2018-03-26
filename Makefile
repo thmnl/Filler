@@ -6,7 +6,7 @@
 #    By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 17:13:20 by tmanuel           #+#    #+#              #
-#    Updated: 2018/03/24 16:27:17 by tmanuel          ###   ########.fr        #
+#    Updated: 2018/03/26 10:58:24 by tmanuel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC =	srcs/main.c \
 		srcs/ft_algo.c \
 		srcs/scoring.c \
 		srcs/ft_cut_piece.c \
+		srcs/ft_random.c \
+		srcs/start_scoring.c \
 
 OBJ = $(patsubst srcs/%.c, %.o, $(SRC))
 

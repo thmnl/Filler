@@ -6,7 +6,7 @@
 /*   By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 02:47:51 by tmanuel           #+#    #+#             */
-/*   Updated: 2018/03/24 16:26:59 by tmanuel          ###   ########.fr       */
+/*   Updated: 2018/03/26 11:01:01 by tmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ typedef struct	s_filler
 	char	p;
 }				t_filler;
 
+int				ft_start_score(t_filler *f, int x, int y);
 int				ft_calculate_score(t_filler *f, int x, int y);
+t_filler		*ft_start1(t_filler *f);
 t_filler		*ft_cut_piece(t_filler *f);
 t_filler		*ft_start_algo(t_filler *f);
 t_filler		*ft_check_map(char *s, t_filler *f);
