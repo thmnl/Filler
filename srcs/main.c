@@ -6,7 +6,7 @@
 /*   By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 02:47:32 by tmanuel           #+#    #+#             */
-/*   Updated: 2018/03/26 11:32:11 by tmanuel          ###   ########.fr       */
+/*   Updated: 2018/03/26 12:35:50 by tmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static t_filler	*ft_algo2(t_filler *f)
 
 	i = 0;
 	j++;
-	if (j < f->mapy * 2)
+	if (j < f->mapy)
 	{
 		if (j % 2 == 0)
-			f->map[f->mapy - (f->mapy / 5)][0 + (f->mapx / 2)] = 'j';
+			f->map[f->mapy - (f->mapy / 5)][0 + (f->mapx / 5)] = 'j';
 		else
-			f->map[0 + (f->mapy / 5)][f->mapx - (f->mapx / 2)] = 'j';
+			f->map[0 + (f->mapy / 5)][f->mapx - (f->mapx / 5)] = 'j';
 		f = ft_start1(f);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 16:05:57 by tmanuel           #+#    #+#             */
-/*   Updated: 2018/03/24 18:03:34 by tmanuel          ###   ########.fr       */
+/*   Updated: 2018/03/26 12:26:52 by tmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,62 +37,50 @@ static void	ft_find_star(t_filler *f, int *tmpx, int *tmpy)
 	}
 }
 
-static int	ft_check_where_is_he(t_filler *f, char *map, int i, int x)
+static int	ft_calculate(int my, int mx, int x, int y)
 {
-	int		j;
+	int tmpy;
+	int tmpx;
+
+	if (my >= y)
+		tmpy = (y - my) * -1;
+	else
+		tmpy = (my - y) * -1;
+	if (mx >= x)
+		tmpx = (x - mx) * -1;
+	else
+		tmpx = (mx - x) * -1;
+	return (tmpx + tmpy);
+}
+
+static int	ft_check_distance(t_filler *f, int x, int y)
+{
+	int		mx;
+	int		my;
+	int		score;
 	char	p;
 
-	if (x > (int)ft_strlen(map))
-		return (0);
+	score = 2000;
+	my = 0;
 	if (f->p == 'X')
 		p = 'O';
 	else
 		p = 'X';
-	j = 0;
-	while (map[j + x] && j < i)
+	while (f->map[my])
 	{
-		if (map[j + x] == p)
-			return (1);
-		j++;
-	}
-	j = 0;
-	i = i * -1;
-	while (map[j] && j > i)
-	{
-		if (map[j] == p)
-			return (1);
-		j--;
-	}
-	return (0);
-}
-
-static int	ft_check_distance(t_filler *f, int x, int y, int check)
-{
-	int i;
-	int j;
-
-	i = 1;
-	while (((y - i) >= 0 || (y + i) < f->mapy) && check == 0)
-	{
-		j = 0;
-		while (j < i)
+		mx = 0;
+		while (f->map[my][mx])
 		{
-			if ((y + i) < f->mapy)
-				check += ft_check_where_is_he(f, f->map[y + j], i, x);
-			if ((y - i) >= 0)
-				check += ft_check_where_is_he(f, f->map[y - j], i, x);
-			j++;
+			if (f->map[my][mx] == p)
+			{
+				if (score > ft_calculate(my, mx, x, y))
+					score = ft_calculate(my, mx, x, y);
+			}
+			mx++;
 		}
-		check += ft_check_where_is_he(f, f->map[y], i, x);
-		if ((y + i) < f->mapy)
-			check += ft_check_where_is_he(f, f->map[y + i], i, x);
-		if ((y - i) >= 0)
-			check += ft_check_where_is_he(f, f->map[y - i], i, x);
-		i++;
+		my++;
 	}
-	if (check)
-		return (i);
-	return (500);
+	return (score);
 }
 
 int			ft_calculate_score(t_filler *f, int x, int y)
@@ -105,6 +93,6 @@ int			ft_calculate_score(t_filler *f, int x, int y)
 	tmpx = x;
 	tmpy = y;
 	ft_find_star(f, &tmpx, &tmpy);
-	score -= ft_check_distance(f, tmpx, tmpy, 0);
+	score -= ft_check_distance(f, tmpx, tmpy);
 	return (score);
 }

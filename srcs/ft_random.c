@@ -6,7 +6,7 @@
 /*   By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 17:33:32 by tmanuel           #+#    #+#             */
-/*   Updated: 2018/03/26 11:36:24 by tmanuel          ###   ########.fr       */
+/*   Updated: 2018/03/26 12:28:53 by tmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ static t_filler	*ft_check_valid2(t_filler *f, int x, int y)
 	int	score;
 	if (f->pstar == f->pstarmax && f->needone == 1)
 	{
-		FILE *fp = fopen("toto.txt", "a+");
 		score = ft_start_score(f, x, y);
-		fprintf(fp, "%d %d\n", score, f->score);
 		if (score >= f->score)
 		{
 			f->validx = x;
 			f->validy = y;
 			f->score = score;
 		}
-		fclose(fp);
 	}
 	return (f);
 }
