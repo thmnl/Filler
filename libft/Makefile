@@ -6,7 +6,7 @@
 #    By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 17:13:20 by tmanuel           #+#    #+#              #
-#    Updated: 2018/03/21 10:41:30 by tmanuel          ###   ########.fr        #
+#    Updated: 2018/03/26 21:05:52 by tmanuel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,14 +124,14 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@tput setaf 10
+	@tput setaf 172
 	@$(ECHO) $@
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
 %.o: srcs/%.c
 	@gcc -c $(FLAGS) $(INC) $<
-	@tput setaf 10
+	@tput setaf 172
 	@$(ECHO) $@
 
 clean:

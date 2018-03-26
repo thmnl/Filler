@@ -6,7 +6,7 @@
 #    By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 17:13:20 by tmanuel           #+#    #+#              #
-#    Updated: 2018/03/26 10:58:24 by tmanuel          ###   ########.fr        #
+#    Updated: 2018/03/26 21:05:19 by tmanuel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,23 +41,25 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C libft
+	@make -C visu
 	@tput setaf 10
 	@$(ECHO) $@
 	@gcc -g $(FLAGS) $(INC) -o $(NAME) $(OBJ) $(LIB)
 
 %.o: srcs/%.c
 	@gcc -c $(FLAGS) $(INC) $<
-	@tput setaf 220
+	@tput setaf 166
 	@$(ECHO) $@
 
 clean:
 	@make -C libft clean
+	@make -C visu clean
 	@/bin/rm -f $(OBJ)
 	@tput setaf 9
 	@$(ECHO) clean done.
 
 fclean: clean
-	@make -C libft fclean
+	@make -C visu fclean
 	@/bin/rm -f $(NAME)
 	@tput setaf 9
 	@$(ECHO) fclean done.
