@@ -6,7 +6,7 @@
 /*   By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 02:28:19 by tmanuel           #+#    #+#             */
-/*   Updated: 2018/03/26 17:57:32 by tmanuel          ###   ########.fr       */
+/*   Updated: 2018/03/27 18:35:52 by tmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			ft_putpixel(t_libx *env, int x, int y, int color)
 	int		pos;
 	int8_t	mask;
 
-	if ((x >= 0 && x <= SCX - 1) && (y >= 0 && y <= SCY - 1))
+	if ((x >= 0 && x <= env->scx - 1) && (y >= 0 && y <= env->scy - 1))
 	{
 		pos = (y * env->s_l + x * 4);
 		mask = color;
