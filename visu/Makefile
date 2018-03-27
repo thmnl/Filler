@@ -6,7 +6,7 @@
 #    By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/26 21:11:50 by tmanuel           #+#    #+#              #
-#    Updated: 2018/03/26 20:10:42 by tmanuel          ###   ########.fr        #
+#    Updated: 2018/03/27 18:31:48 by tmanuel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FLAGS = -Wall -Wextra -Werror
 
 INC = -I includes
 
-LIB =  -L libft/ -lft
+LIB =  -L ../libft/ -lft
 
 LIBX = -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
@@ -40,26 +40,23 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C libft/
 	@gcc -c -g $(FLAGS) $(INC) $(SRC)
 	@gcc -g $(FLAGS) $(INC) -o $(NAME) $(OBJ) $(LIB) $(LIBX)
 
 %.o: srcs/%.c
 	@gcc -c $(FLAGS) $(INC) $<
-	@tput setaf 142
+	@tput setaf 190
 	@$(ECHO) $@
 
 clean:
 	@/bin/rm -f $(OBJ)
 	@tput setaf 9
-	@make -C libft/ clean
 	@$(ECHO) clean done.
 
 fclean: clean
 	@/bin/rm -f $(NAME)
 	@tput setaf 9
 	@$(ECHO) fclean done.
-	@make -C libft/ fclean
 
 re:
 	@make fclean && make

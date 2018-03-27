@@ -6,19 +6,13 @@
 #    By: tmanuel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 17:13:20 by tmanuel           #+#    #+#              #
-#    Updated: 2018/03/27 18:27:36 by tmanuel          ###   ########.fr        #
+#    Updated: 2018/03/27 18:28:46 by tmanuel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = tmanuel.filler
+NAME = map_creator
 
-SRC =	srcs/main.c \
-		srcs/ft_parsing.c \
-		srcs/ft_algo.c \
-		srcs/scoring.c \
-		srcs/ft_cut_piece.c \
-		srcs/ft_random.c \
-		srcs/start_scoring.c \
+SRC =	srcs/map_creator.c \
 
 OBJ = $(patsubst srcs/%.c, %.o, $(SRC))
 
@@ -26,7 +20,7 @@ FLAGS = -Wall -Wextra -Werror
 
 INC = -I includes
 
-LIB = -L libft/ -lft
+LIB = -L ../libft/ -lft
 
 ifndef ECHO
 T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
@@ -40,30 +34,21 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C libft
-	@make -C map_creator
-	@make -C visu
-	@tput setaf 10
+	@tput setaf 220
 	@$(ECHO) $@
 	@gcc -g $(FLAGS) $(INC) -o $(NAME) $(OBJ) $(LIB)
 
 %.o: srcs/%.c
 	@gcc -c $(FLAGS) $(INC) $<
-	@tput setaf 166
+	@tput setaf 220
 	@$(ECHO) $@
 
 clean:
-	@make -C libft clean
-	@make -C map_creator clean
-	@make -C visu clean
 	@/bin/rm -f $(OBJ)
 	@tput setaf 9
 	@$(ECHO) clean done.
 
 fclean: clean
-	@make -C libft fclean
-	@make -C map_creator fclean
-	@make -C visu fclean
 	@/bin/rm -f $(NAME)
 	@tput setaf 9
 	@$(ECHO) fclean done.
